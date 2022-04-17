@@ -26,16 +26,17 @@
         <input type="hidden" th:field="*{id}"/> <br/>
 
         <label>First Name:</label>
-        <input type="text" th:field="*{firstName}" placeholder="firstname"><br>
+        <input type="text" style="text-transform: capitalize;" th:field="*{firstName}" placeholder="firstname"><br>
 
         <label>Last Name:</label>
-        <input type="text" th:field="*{lastName}" placeholder="lastname"><br>
+        <input type="text" style="text-transform: capitalize;" th:field="*{lastName}" placeholder="lastname"><br>
 
         <label>School No:</label>
-        <input type="text" th:field="*{schoolNo}" placeholder="value must be integer"><br>
+        <input type="number" onkeypress="return this.value.length!=11" th:field="*{schoolNo}"
+               placeholder="value must be integer"><br>
 
         <label>Address:</label>
-        <input type="text" th:field="*{address}" placeholder="address"><br>
+        <input type="text" style="text-transform: capitalize;" th:field="*{address}" placeholder="address"><br>
 
         <label>Gender:</label>
         <input type="radio" th:field="*{gender}" value="male">male

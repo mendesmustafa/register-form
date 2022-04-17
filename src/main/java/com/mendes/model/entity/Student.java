@@ -16,14 +16,19 @@ public class Student implements Serializable {
     @SequenceGenerator(name = "STUDENTS_ID_SEQ", allocationSize = 1)
     @Column(name = "ID")
     private Long id;
+
     @Column(name = "FIRST_NAME")
     private String firstName;
+
     @Column(name = "LAST_NAME")
     private String lastName;
+
     @Column(name = "SCHOOL_NUMBER", unique = true)
     private Long schoolNo;
+
     @Column(name = "ADDRESS", length = 1024)
     private String address;
+
     @Column(name = "GENDER")
     private String gender;
 

@@ -5,6 +5,7 @@ import com.mendes.model.entity.Student;
 import com.mendes.repository.StudentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,7 +16,7 @@ import java.util.Optional;
 @Service
 public class StudentService {
 
-    private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
 
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
@@ -81,8 +82,13 @@ public class StudentService {
         }
     }
 
-    public List<Student> list() {
+    public List<StudentModel> list() {
+        List<StudentModel> studentModels = new ArrayList<>();
         List<Student> students = studentRepository.findAll();
-        return students;
+        students.forEach(student -> {
+            StudentModel studentModel = fillModel(student);
+            studentModels.add(studentModel);
+        });
+        return studentModels;
     }
 }

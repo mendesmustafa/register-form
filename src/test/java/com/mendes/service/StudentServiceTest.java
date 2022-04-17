@@ -17,13 +17,13 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 
 @SpringBootTest
-public class StudentServiceTest {
+class StudentServiceTest {
 
-    private final static String DEFAULT_FIRST_NAME = "ali";
-    private final static String DEFAULT_LAST_NAME = "can";
+    private final static String DEFAULT_FIRST_NAME = "TEST-FIRST-NAME";
+    private final static String DEFAULT_LAST_NAME = "TEST-LAST-NAME";
     private final static Long DEFAULT_SCHOOL_NUMBER = 1L;
-    private final static String DEFAULT_ADDRESS = "adana";
-    private final static String DEFAULT_GENDER = "male";
+    private final static String DEFAULT_ADDRESS = "TEST-ADDRESS";
+    private final static String DEFAULT_GENDER = "TEST-GENDER";
 
     StudentModel defaultModel;
     StudentModel defaultResult;
@@ -49,13 +49,13 @@ public class StudentServiceTest {
     }
 
     @Test
-    public void create() {
+    void create() {
         defaultResult = studentService.save(defaultModel);
         assertNotNull(defaultResult.getId());
     }
 
     @Test
-    public void delete() {
+    void delete() {
         defaultResult = studentService.save(defaultModel);
         studentService.delete(defaultResult.getId());
         Student student = studentService.findById(defaultResult.getId());
@@ -63,7 +63,7 @@ public class StudentServiceTest {
     }
 
     @Test
-    public void findById() {
+    void findById() {
         defaultResult = studentService.save(defaultModel);
         assertNotNull(defaultResult);
         StudentModel model = studentService.getById(defaultResult.getId());
@@ -79,20 +79,10 @@ public class StudentServiceTest {
     }
 
     @Test
-    public void list() {
+    void list() {
         defaultResult = studentService.save(defaultModel);
         assertNotNull(defaultResult);
-
-        StudentModel model = new StudentModel();
-        model.setFirstName("ayse");
-        model.setLastName("bak");
-        model.setSchoolNo(2L);
-        model.setAddress("istanbul");
-        model.setGender("female");
-        StudentModel modelResult = studentService.save(model);
-        assertNotNull(modelResult);
-
-        List<Student> list = studentService.list();
-        assertEquals(list.size(), 2);
+        List<StudentModel> list = studentService.list();
+        assertEquals(1, list.size());
     }
 }

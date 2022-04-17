@@ -1,7 +1,6 @@
 package com.mendes.controller;
 
 import com.mendes.model.dto.StudentModel;
-import com.mendes.model.entity.Student;
 import com.mendes.service.StudentService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +15,7 @@ import java.util.List;
 @Controller
 public class StudentController {
 
-    private StudentService studentService;
+    private final StudentService studentService;
 
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
@@ -30,7 +29,7 @@ public class StudentController {
 
     @GetMapping("/")
     public String list(Model model) {
-        List<Student> students = studentService.list();
+        List<StudentModel> students = studentService.list();
         model.addAttribute("students", students);
         return "index";
     }
@@ -44,13 +43,13 @@ public class StudentController {
     @RequestMapping("/edit/{id}")
     public String edit(@PathVariable(name = "id") Long id, Model model) {
         model.addAttribute("studentModel", studentService.getById(id));
-        return "newStudent";
+        return "new-student";
     }
 
-    @GetMapping("/addStudentForm")
+    @GetMapping("/add-student-form")
     public String add(Model model) {
         StudentModel studentModel = new StudentModel();
         model.addAttribute("studentModel", studentModel);
-        return "newStudent";
+        return "new-student";
     }
 }
